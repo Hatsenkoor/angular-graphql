@@ -1,0 +1,32 @@
+<h2>Register</h2>
+<form #registerForm="ngForm" (ngSubmit)="registerForm.form.valid && onSubmit()">
+    <p style="color: red;font-weight: 600;">{{errorMessage}}</p>
+    <div class="form-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" name="fullname" [(ngModel)]="model.fullname" #fullname="ngModel" class="form-control"
+            [ngClass]="{ 'is-invalid': registerForm.submitted && fullname.invalid }" required />
+        <div *ngIf="registerForm.submitted && fullname.invalid" class="invalid-feedback">
+            <div *ngIf="fullname.errors.required">Full Name is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" [(ngModel)]="model.username" #username="ngModel" class="form-control"
+            [ngClass]="{ 'is-invalid': registerForm.submitted && username.invalid }" required />
+        <div *ngIf="registerForm.submitted && username.invalid" class="invalid-feedback">
+            <div *ngIf="username.errors.required">User Name is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="username">Password</label>
+        <input type="password" name="password" [(ngModel)]="model.password" #password="ngModel" class="form-control"
+            [ngClass]="{ 'is-invalid': registerForm.submitted && password.invalid }" required />
+        <div *ngIf="registerForm.submitted && password.invalid" class="invalid-feedback">
+            <div *ngIf="password.errors.required">Password is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">Register</button>
+        <a routerLink="/login" class="btn btn-link">Cancel</a>
+    </div>
+</form>
